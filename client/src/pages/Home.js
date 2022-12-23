@@ -4,20 +4,21 @@ import Explore from '../Components/Explore';
 import Guide from '../Components/Guide';
 import Footer from '../Components/Footer';
 import Carousel from '../Components/Carousel';
-import Navbar from '../Components/Navbar';
 import {Testimonials}  from '../Components/Testimonials';
 import GetStarted from '../Components/GetStarted';
+import FAQ from '../Components/FAQ';
 import "../App.css"
 const Home = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+     
       <Hero />
       <Guide/>
       <Explore/>
       <Carousel/>
       <GetStarted/>
       <Testimonials/>
+      <FAQ/>
       <Footer/>
     </div>
   )

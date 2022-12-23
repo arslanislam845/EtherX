@@ -1,43 +1,52 @@
 /* This example requires Tailwind CSS v2.0+ */
-
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 
-// const user = {
-//   name: 'Tom Cook',
-//   email: 'tom@example.com',
-//   imageUrl:
-//     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-// }
-const navigation = [
-  { name: "Explore", href: "/interface" },
-  { name: "Help Center", href: "#" },
-  { name: "Community", href: "#" },
-  { name: "Join", href: "/login" },
-];
-// const userNavigation = [
-//   { name: 'Your Profile', href: '#' },
-//   { name: 'Settings', href: '#' },
-//   { name: 'Sign out', href: '#' },
-// ]
-
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
-
 export default function Example() {
+
+  const navigation = [
+    { name: "Explore", href: "/interface" },
+    { name: "Help Center", href: "#" },
+    { name: "Community", href: "#" },
+    { name: "Join", href: "/login" },
+  ];
+
+  const [defaultAccount, setDefaultAccount] = useState(null);
+  const connectWalletHandler = () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+          accountChangedHandler(result[0]);
+        });
+    } else {
+      window.open("https://metamask.io/");
+    }
+  };
+  const disconnectWallet = () => {
+    window.location.reload();
+  };
+
+  // const chainChangedHandler = () => {
+  //   window.location.reload();
+  // };
+
+  //  Listen for account change and disconnect
+  //  window.ethereum.on("accountsChanged", chainChangedHandler);
+  const accountChangedHandler = (newAccount) => {
+    setDefaultAccount(newAccount);
+  };
+
   return (
     <Popover>
-      {/* <div className=" mx-auto relative py-3 w-full h-[72px] px-4 sm:px-6 bg-white overflow-hidden shadow-md">
-        <nav
-          className=" bg-white relative w-[97%] flex items-center justify-between sm:h-10 md:justify-evenly"
-          aria-label="Global"
-        > */}
-      <div className=" mx-auto py-3 w-full relative h-[72px] px-4 sm:px-6    overflow-hidden shadow-md"
-       style={{ backgroundColor: "#F9FAFB" }}>
+      <div
+        className=" mx-auto py-3 w-full relative h-[72px] px-4 sm:px-6    overflow-hidden shadow-md"
+        style={{ backgroundColor: "#F9FAFB" }}
+      >
         <nav
           className="   ml-[0.9rem]  w-[97%] flex items-center justify-between sm:h-10 md:justify-self-stretch"
           aria-label="Global"
@@ -45,8 +54,8 @@ export default function Example() {
           <div className="-ml-4 flex items-center relative md:inset-y-0 md:left-0">
             <div className="flex w-full items-center justify-between md:w-auto">
               <Link to="/">
-                <a className="flex flex-row items-center">
-                  <span className="sr-only">Your Company</span>
+                <div className="flex flex-row items-center">
+                  <span className="sr-only">EtherX</span>
                   <img
                     className="h-8 w-auto sm:h-10"
                     src="https://bit.ly/3iRQ261"
@@ -54,7 +63,7 @@ export default function Example() {
                   />
 
                   <h1 className="font-bold text-3xl ml-2"> EtherX </h1>
-                </a>
+                </div>
               </Link>
               <div className="-mr-2 flex items-center md:hidden"></div>
             </div>
@@ -85,21 +94,37 @@ export default function Example() {
             <div className="hidden  md:flex md:space-x-10 md:mr-7 ">
               {navigation.map((item) => (
                 <Link to={{ pathname: `${item.href}` }}>
-                  <a
+                  <div
                     key={item.name}
                     className="font-semibold text-xl text-gray-900 hover:text-[#2563EB] ease-in-out"
                   >
                     {item.name}
-                  </a>
+                  </div>
                 </Link>
               ))}
             </div>
             <span className="inline-flex rounded-full shadow-sm">
-              <Link to={{ pathname: "#" }}>
-                <a className=" w-[170px] inline-flex rounded-full border-2 font-semibold border-transparent text-[#2563EB] border-blue-500 pl-6 font-medium py-1  text-lg bg-white">
-                Connect Wallet
-                </a>
-              </Link>
+              {defaultAccount ? (
+                ""
+              ) : (
+                <div
+                  onClick={connectWalletHandler}
+                  className="cursor-pointer w-[170px] inline-flex rounded-full border-2 hover:bg-blue-500 hover:text-white  text-sky-600 border-blue-600 pl-6 font-medium py-1  text-lg "
+                >
+                  Connect Wallet
+                </div>
+              )}
+
+              {defaultAccount ? (
+                <div
+                  onClick={disconnectWallet}
+                  className="cursor-pointer w-[190px] inline-flex rounded-full border-2 hover:bg-blue-500 hover:text-white  border-transparent text-sky-600 border-blue-600 pl-6 font-medium py-1  text-lg "
+                >
+                  Disconnect Wallet
+                </div>
+              ) : (
+                ""
+              )}
             </span>
           </div>
         </nav>
@@ -149,7 +174,7 @@ export default function Example() {
               href="/"
               className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
             >
-               Connect Wallet
+              Connect Wallet
             </a>
           </div>
         </Popover.Panel>

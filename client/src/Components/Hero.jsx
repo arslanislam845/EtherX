@@ -1,12 +1,44 @@
 /* This example requires Tailwind CSS v2.0+ */
-
+import React, { useState } from "react";
 import "../App.css";
 import {  XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+
+
 export default function Example() {
+
+  const [defaultAccount, setDefaultAccount] = useState(null);
+ 
+  const connectWalletHandler = () => {
+
+      if (window.ethereum) {
+        window.ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((result) => {
+            accountChangedHandler(result[0]);
+          });
+      } else {
+        window.open('https://metamask.io/') 
+      }
+    }
+    const disconnectWallet = () => {
+      window.location.reload();
+    };
+  
+    // const chainChangedHandler = () => {
+    //   window.location.reload();
+    // };
+  
+    //  Listen for account change and disconnect
+    // window.ethereum.on("accountsChanged", chainChangedHandler);
+    const accountChangedHandler = (newAccount) => {
+      setDefaultAccount(newAccount);
+     
+    };
+
   const navigation = [
     { name: "Explore", href: "/interface" },
     { name: "Help Center", href: "#" },
@@ -17,11 +49,7 @@ export default function Example() {
     
     <div className="font">
     <Popover>
-    {/* <div className=" mx-auto relative py-3 w-full h-[72px] px-4 sm:px-6 bg-white overflow-hidden shadow-md">
-      <nav
-        className=" bg-white relative w-[97%] flex items-center justify-between sm:h-10 md:justify-evenly"
-        aria-label="Global"
-      > */}
+   
     <div className=" mx-auto py-3 w-full relative h-[72px] px-4 sm:px-6  overflow-hidden shadow-xl">
       <nav
         className=" ml-[0.9rem]  w-[97%] flex items-center justify-between sm:h-10 md:justify-self-stretch"
@@ -30,8 +58,8 @@ export default function Example() {
         <div className="-ml-4 flex items-center relative md:inset-y-0 md:left-0">
           <div className="flex w-full items-center justify-between md:w-auto">
             <Link to="/">
-              <a className="flex flex-row items-center">
-                <span className="sr-only">Your Company</span>
+              <div className="flex flex-row items-center">
+                <span className="sr-only">EtherX</span>
                 <img
                   className="h-8 w-auto sm:h-10"
                   src="https://bit.ly/3iRQ261"
@@ -39,7 +67,7 @@ export default function Example() {
                 />
 
                 <h1 className="font-bold text-3xl ml-2"> EtherX </h1>
-              </a>
+              </div>
             </Link>
             <div className="-mr-2 flex items-center md:hidden"></div>
           </div>
@@ -70,23 +98,41 @@ export default function Example() {
           <div className="hidden  md:flex md:space-x-10 md:mr-7 ">
             {navigation.map((item) => (
               <Link to={{ pathname: `${item.href}` }}>
-                <a
+                <div
                   key={item.name}
                   className="font-semibold text-lg text-white hover:border-b-2 ease-in-out "
                 >
                   {item.name}
-                </a>
+                </div>
               </Link>
             ))}
           </div>
 
           <span className="inline-flex rounded-full shadow-sm">
-            <Link to={{ pathname: "#" }}>
-              <a className=" w-[170px] inline-flex rounded-full border-2 hover:bg-blue-500 hover:text-white font-semibold border-transparent text-white border-white pl-6 font-medium py-1  text-lg ">
-                Connect Wallet
-              </a>
-            </Link>
+      
+              {defaultAccount ? (
+                  ""
+                ) : (
+                  <div onClick={connectWalletHandler} className="cursor-pointer w-[170px] inline-flex rounded-full border-2 hover:bg-blue-500 hover:text-white border-transparent text-white border-white pl-6 font-medium py-1  text-lg ">
+                  Connect Wallet
+                </div>
+                )}
+    
+                {defaultAccount ? (
+                 <div onClick={disconnectWallet} className="cursor-pointer w-[190px] inline-flex rounded-full border-2 hover:bg-blue-500 hover:text-white  border-transparent text-white border-white pl-6 font-medium py-1  text-lg ">
+                 Disconnect Wallet
+               </div> 
+                ) : (
+                  ""
+                )}
+            
+              
+
           </span>
+
+       
+
+
         </div>
       </nav>
     </div>
@@ -173,11 +219,11 @@ export default function Example() {
             <Link to="/interface">
               <div className="rounded-md shadow-md ">
              
-                <a
+                <div
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#2563EB] px-8 py-2 text-base font-semibold text-white tracking-wider md:py-2 md:px-10 md:text-lg hover:bg-[#4e80ea]"
                 >
                   Explore
-                </a>
+                </div>
               
               </div>
               </Link>
@@ -213,6 +259,7 @@ export default function Example() {
                     d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"
                   />
                 </svg>
+                
               </div>
 
               <a

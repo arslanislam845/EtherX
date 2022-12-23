@@ -69,30 +69,29 @@ const GigDetails = () => {
             id repellat suscipit at ullam, excepturi facilis, sapiente
             aspernatur ipsam vel.
           </p>
-          <div className="flex items-center flex-col">
-            <div className="rounded-md shadow-md w-1/2 mt-8">
+
+          <div className="flex justify-center  mt-7 ">
+           
+            <div className="rounded-md shadow-sm mr-10 w-52 h-30">
               <Link to="/login">
-                <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#2563EB] px-2 py-2 text-base font-medium text-white tracking-wider md:py-2 md:px-4 md:text-md hover:bg-[#103da0]">
-                  Started
+                <a className="flex w-full  justify-center rounded-md border border-transparent border-[#c4c4c4] bg-[#2563EB] px-2 py-2 text-base font-semibold  hover:bg-[#f4f5f6] tracking-wider md:py-3 md:text-lg hover:text-[#2563EB] text-white">
+                Started
                 </a>
               </Link>
             </div>
-
-            <div className="flex  mt-2 ">
-              <div className="rounded-md shadow-sm mr-10">
-                <Link to="/login">
-                  <a className="flex w-full items-center justify-center rounded-md border border-transparent border-[#a2a3a6] bg-white px-2 py-2 text-base font-semibold  text-[#5381e6] tracking-wider md:py-2 md:px-4 md:text-md hover:bg-[#2b3b60] hover:text-white">
-                    Make an Offer
-                  </a>
-                </Link>
-              </div>
-              <div className="rounded-md shadow-sm ">
-                <Link to="/login">
-                  <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-2 border-[#a2a3a6] py-2 text-base font-semibold text-[#5381e6] tracking-wider md:py-2 md:px-4 md:text-md hover:bg-[#2b3b60] hover:text-white">
-                    Chat with Seller
-                  </a>
-                </Link>
-              </div>
+            <div className="rounded-md shadow-sm mr-10  w-52 h-30">
+              <Link to="/login">
+                <a className="flex w-full  justify-center rounded-md border border-transparent border-[#d4d5d6] bg-white px-2 py-2 text-base font-semibold hover:shadow-sm hover:border-stone-400 hover:bg-white tracking-wider md:py-3 md:text-lg hover:text-[#2563EB] text-[#2563EB]">
+                Make Offer
+                </a>
+              </Link>
+            </div>
+            <div className="rounded-md shadow-sm mr-10  w-52 h-30">
+              <Link to="/login">
+                <a className="flex w-full  justify-center rounded-md border border-transparent border-[#a2a3a6] bg-[#21242a] px-2 py-2 text-base font-semibold  hover:bg-[#f4f5f6] tracking-wider md:py-3 md:text-lg hover:text-[#2563EB] text-white">
+               Contact Saler
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -101,21 +100,25 @@ const GigDetails = () => {
             <h1 className="text-2xl font-bold">About This Gig</h1>
             <p className="pt-4">
               Looking for a custom web application with a beautiful reactive
-              design? Look no further! <br/><br/>With my 5+ years of industry experience
-              working with a range of clients to build their complex web
-              applications, you can rest assured that I will deliver the best
-              Fiverr has to offer in terms of web application development.<br/><br/> My
-              cheap prices and fast turnover are a sign of my expertise in this
-              area and I am willing to talk more about your specific needs to
-              ensure you get the best quality web application for your money.
-              These are just some of the things I can provide.<br/> <br/>Do contact me for
-              any specific needs: Beautiful react frontend Beautiful vuejs
-              frontend Complex Nodejs backend REST API API integration Highly
-              performant web applications Responsive and reactive websites
-              Complex database designs in SQL and MongoDB Buyer satisfaction is
-              my top priority so please message me before making an order so we
-              can discuss your specific needs and I will be able to best assist
-              you.
+              design? Look no further! <br />
+              <br />
+              With my 5+ years of industry experience working with a range of
+              clients to build their complex web applications, you can rest
+              assured that I will deliver the best Fiverr has to offer in terms
+              of web application development.
+              <br />
+              <br /> My cheap prices and fast turnover are a sign of my
+              expertise in this area and I am willing to talk more about your
+              specific needs to ensure you get the best quality web application
+              for your money. These are just some of the things I can provide.
+              <br /> <br />
+              Do contact me for any specific needs: Beautiful react frontend
+              Beautiful vuejs frontend Complex Nodejs backend REST API API
+              integration Highly performant web applications Responsive and
+              reactive websites Complex database designs in SQL and MongoDB
+              Buyer satisfaction is my top priority so please message me before
+              making an order so we can discuss your specific needs and I will
+              be able to best assist you.
             </p>
           </div>
         </div>
