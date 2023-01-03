@@ -5,8 +5,6 @@ import MakeOffer from '../Components/MakeOffer';
 import GigsTemplate from '../Components/GigsTemplate';
 import "../App.css"
 
-
-
 const UserInterface = () => {
    
     useEffect(() => {

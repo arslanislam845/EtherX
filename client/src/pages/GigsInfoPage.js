@@ -3,6 +3,7 @@ import Footer from "../Components/Footer";
 import NavbarNR from "../Components/NavbarNR";
 import GigDetails from "../Components/GigDetails";
 import Reviews from "../Components/Reviews";
+
 const GigsInfoPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
